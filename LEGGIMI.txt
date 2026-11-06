@@ -1,0 +1,74 @@
+MERCATI REPORT
+==============
+
+Cosa fa
+Con un clic genera una presentazione PowerPoint con grafici e tabelle di mercato
+aggiornati, sullo stile della presentazione "Mercati": inflazione USA ed Eurozona,
+tassi governativi USA, Germania e Svizzera, bond index, banche centrali,
+Treasury e curva USA, borse mondiali, indice mondiale, sviluppati vs emergenti,
+regioni emergenti, S&P 500, STOXX 600, MSCI World, MSCI EM, SMI, riepilogo valute,
+EUR/USD, EUR/CHF, USD/CHF, materie prime e cripto, BCOM, Brent, gas TTF, oro, Bitcoin.
+
+Insieme al .pptx salva anche un file Excel con i dati e una cartella con
+tutti i grafici in PNG. Le tabelle nel PowerPoint sono modificabili.
+
+Fonti (gratuite, uso personale)
+Yahoo Finance, FRED (Fed St. Louis), Bundesbank, Banca nazionale svizzera, BIS.
+Gli indici Bloomberg/MSCI non gratuiti sono approssimati con ETF (indicati tra parentesi).
+Se una fonte non risponde, la riga mostra "n.d." e l'avviso compare nell'ultima slide.
+
+------------------------------------------------------------
+CREARE L'ESEGUIBILE (una volta sola, chi prepara il programma)
+1. Installare Python 3.11 o 3.12 da python.org (spuntare "Add Python to PATH")
+2. Doppio clic su crea_exe.bat
+3. Il programma pronto si trova in dist\MercatiReport.exe
+   Basta dare al collega solo quel file.
+
+CREARE L'APP PER MAC (una volta sola, su un Mac)
+1. Installare Python 3.12 da python.org (non usare il python3 di sistema di Apple)
+2. Doppio clic su crea_app_mac.command (se macOS lo blocca: tasto destro > Apri)
+3. Da inviare al collega: MercatiReport_mac.zip
+   L'app creata su un Mac Apple Silicon (M1, M2...) funziona solo su quelli;
+   per i Mac Intel va creata su un Mac Intel.
+
+CREARE TUTTO SENZA WINDOWS NE MAC (GitHub)
+Caricando questa cartella in un repository GitHub, in Actions >
+"Build Mercati Report" > Run workflow si ottengono in automatico l'exe Windows
+e le app Mac Apple Silicon e Intel, da scaricare in "Artifacts".
+
+AL PRIMO AVVIO (normale, il programma non è firmato)
+Windows: "Windows ha protetto il PC" > Ulteriori informazioni > Esegui comunque
+Mac: tasto destro sull'app > Apri > Apri
+
+USO (collega)
+Doppio clic su MercatiReport.exe, scegliere la data e la cartella, premere
+"Genera presentazione". Ci vuole circa un minuto. Il primo avvio dell'exe
+può richiedere qualche secondo in più.
+
+ALTERNATIVA SENZA EXE
+Con Python installato: doppio clic su avvia_con_python.bat
+
+LINGUA
+Nella finestra si sceglie Italiano, English o Español. Il file prende il suffisso
+_ITA, _ENG o _ESP. Le traduzioni sono nel dizionario TR in mercati_report.py.
+
+TITOLI PERSONALIZZATI
+Nel campo "Titoli (ticker Yahoo)" si scrivono uno o più ticker separati da virgola.
+Per ogni titolo viene creato un grafico del prezzo. Con due o più titoli si aggiunge
+anche un grafico di confronto in base 100.
+Il ticker è il codice che compare nell'indirizzo della pagina Yahoo, per esempio
+finance.yahoo.com/quote/CAP.SN  ->  CAP.SN
+Suffissi di borsa più comuni: .SW Svizzera, .MI Milano, .DE Xetra, .PA Parigi,
+.L Londra, .AS Amsterdam, .MC Madrid, .SN Santiago, .SA San Paolo, .MX Messico,
+.T Tokyo, .HK Hong Kong. Le azioni USA non hanno suffisso (AAPL, MSFT).
+Si può dare un nome al titolo con il segno uguale:  CAP.SN=CAP SA, NESN.SW=Nestlé
+I prezzi sono nella valuta di quotazione e non sono rettificati per i dividendi.
+
+PROBLEMI FREQUENTI
+Se Yahoo smette di rispondere (succede quando cambia qualcosa lato Yahoo),
+aggiornare yfinance con:  python -m pip install -U yfinance
+e ricreare l'exe con crea_exe.bat.
+
+PERSONALIZZARE
+Ticker, colori e liste di indici sono all'inizio di mercati_report.py,
+nella sezione CONFIGURAZIONE.
